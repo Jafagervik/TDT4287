@@ -11,6 +11,3 @@ def lcs(A: str, B: str) -> int:
             else:
                 memo[row][col] = max(memo[row - 1][col], memo[row][col - 1])
     return memo, memo[m - 1][n - 1]
-
-
-print(lcs("AAABC", "ABC"))

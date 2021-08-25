@@ -22,5 +22,9 @@ def check_lcs(string1: str, string2: str) -> int:
 
 
 def main():
-    s1, s2 = ask_for_files()
-    check_lcs(s1, s2)
+    # s1, s2 = ask_for_files()
+    check_lcs("ATTCGGTTA", "TAGTGATG")
+
+
+if __name__ == "__main__":
+    main()
