@@ -1,12 +1,12 @@
 """Represents the suffix trie data structure for strings"""
 
 
-from typing import Any, Optional
+from typing import Any
 
 
 class SuffixTrie:
     def __init__(self, t: str) -> Any:
-        """Make suffix trie from s."""
+        """Make suffix trie from t."""
         t.__add__("$")
         self.root = {}
         for i in range(len(t)):
@@ -39,3 +39,7 @@ class SuffixTrie:
 
     def __len__(self):
         """Returns the amount of node in the suffix trie."""
+        amount = 0
+        for key, val in self.root.items():
+            amount += len(val)
+        return amount

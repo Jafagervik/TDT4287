@@ -1,5 +1,8 @@
 def ed(A: str, B: str) -> int:
-    """Returns the edit distance, or the cost of operations to transform A into B."""
+    """
+    Returns the edit distance, or the cost of operations to transform A into B.
+    Levenshtein distance is used to calculate our ED.
+    """
     m = len(A) + 1
     n = len(B) + 1
     memo = [[0] * (n) for i in range(m)]
@@ -16,8 +19,4 @@ def ed(A: str, B: str) -> int:
             memo[r][c] = min(
                 memo[r - 1][c - 1] + cost, memo[r - 1][c] + 1, memo[r][c - 1] + 1
             )
-    print(memo)
-    return memo[m - 1][n - 1]
-
-
-print(ed("AGCTTAGC", "GCTAGGA"))
+    return memo, memo[m - 1][n - 1]

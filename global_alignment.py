@@ -21,7 +21,6 @@ def ga(A: str, B: str) -> int:
 
     for r in range(1, m):
         for c in range(1, n):
-            cost = 0 if A[r - 1] == B[c - 1] else -1
             memo[r][c] = max(
                 memo[r - 1][c - 1] + dna(A[r], B[c]),
                 memo[r - 1][c] + dna("-", B[c]),
