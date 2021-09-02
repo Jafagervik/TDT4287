@@ -1,6 +1,7 @@
 from typing import Any
 from lcs import lcs
 from edit_distance import ed
+from global_alignment import global_alignment_affine_gaps
 from suffixtrie import SuffixTrie
 import pandas as pd
 
@@ -38,7 +39,8 @@ def main():
     # s1, s2 = ask_for_files()
     # check_lcs("ATTCGGTTA", "TAGTGATG")
     # check_ed("ATTCGGTTA", "TAGTGATG")
-    check_suffix_trie("Banana")
+    # check_suffix_trie("Banana")
+    global_alignment_affine_gaps("GCCTTAG", "GCTAG")
 
 
 if __name__ == "__main__":
