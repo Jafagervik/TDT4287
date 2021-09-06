@@ -1,3 +1,4 @@
+from global_alignment import new_ga, traceback
 from typing import Any
 from lcs import lcs
 from edit_distance import ed
@@ -29,6 +30,10 @@ def check_ed(string1: str, string2: str) -> int:
     )
 
 
+def check_ga(string1: str, string2: str):
+    print(f"traceback: {traceback(string1, string2, new_ga(string1, string2))}")
+
+
 def check_suffix_trie(string1: str) -> None:
     trie = SuffixTrie(string1)
     print(trie.has_substring("ana"))
@@ -36,9 +41,9 @@ def check_suffix_trie(string1: str) -> None:
 
 def main():
     # s1, s2 = ask_for_files()
-    # check_lcs("ATTCGGTTA", "TAGTGATG")
-    # check_ed("ATTCGGTTA", "TAGTGATG")
-    check_suffix_trie("Banana")
+    # check_lcs("ACGGTAC", "CTCGATC")
+    # check_ed("CTCGACT", "CTTCGTC"
+    check_ga("AGCT", "ATGCT")
 
 
 if __name__ == "__main__":
