@@ -2,6 +2,7 @@ from global_alignment import new_ga, traceback
 from typing import Any
 from lcs import lcs
 from edit_distance import ed
+from global_alignment import global_alignment_affine_gaps
 from suffixtrie import SuffixTrie
 import pandas as pd
 
@@ -41,8 +42,10 @@ def check_suffix_trie(string1: str) -> None:
 
 def main():
     # s1, s2 = ask_for_files()
-    # check_lcs("ACGGTAC", "CTCGATC")
-    # check_ed("CTCGACT", "CTTCGTC"
+    # check_lcs("ATTCGGTTA", "TAGTGATG")
+    # check_ed("ATTCGGTTA", "TAGTGATG")
+    # check_suffix_trie("Banana")
+    global_alignment_affine_gaps("GCCTTAG", "GCTAG")
     check_ga("AGCT", "ATGCT")
 
 
