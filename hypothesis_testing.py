@@ -16,7 +16,7 @@ Local
 """
 
 
-def randomization(Q: str, D: str, iterations=10000):
+def randomization(Q: str, D: str, iterations: int = 10000):
     """Randomized-based hhypothesis testing. Check if any random string from database is bigger than D with LA algorithm."""
     x = la(Q, D)
     count = 0
