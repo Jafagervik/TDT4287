@@ -29,7 +29,9 @@ def knut_morris_plot(T: str, P: str) -> tuple(list[int], int):
                 i += 1
 
 
-def compute_lcs_array(P, n, lps):
+def compute_lcs_array(P: str, n: int, lps: list[int]):
+    """"""
+
     # length of the previous longest prefix suffix
     l = 0
 
