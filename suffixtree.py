@@ -12,6 +12,20 @@ Total length of edge labels is quadratic in m
 """
 
 
+class Node:
+    def __init__(self, label: str = "") -> None:
+        self.label = label
+
+
+class Edge:
+    def __init__(
+        self, parent: Node, children: list[Node] = None, label: tuple = None
+    ) -> None:
+        self.parent = parent
+        self.children = children if children is not None else []
+        self.label = label
+
+
 class SuffixTree:
     """
     We will be using lcp and suffix arrays to construct the SuffixTree here, not ukkonen
@@ -21,18 +35,6 @@ class SuffixTree:
     O(m) space
     O(m^2) time
     """
-
-    class Node:
-        def __init__(self, label: str = None) -> None:
-            self.label = label if label is not None else ""
-
-    class Edge:
-        def __init__(
-            self, parent: Node, children: list[Node] = None, label: tuple = None
-        ) -> None:
-            self.parent = parent
-            self.children = children if children is not None else []
-            self.label = label
 
     def __init__(self, t: str) -> None:
         t.__add__("$")
