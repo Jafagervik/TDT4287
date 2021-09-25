@@ -71,13 +71,16 @@ class SuffixTree:
             if i == 0:
                 self.root = new_node
                 prev_node = new_node
-                continue
             self.active_node = new_node
+
+            new_edge = Edge(prev_node, new_node, self.t[:i], (i, len(self.t)))
+            prev_node.children.append(new_edge)
+            new_node.parent = prev_node
             # Case 1: No outgoing edge, check first character in all children edges
             if self.t[i] not in [c.label[0] for c in self.active_node.children]:
-                new_edge = Edge(prev_node, new_node, self.t[:i], (0, i))
-                prev_node.children.append(new_edge)
-                new_node.parent = prev_node
+                # time 8:12 in https://www.youtube.com/watch?v=ByuMPBfyR5g
+
+                continue
 
     def print_edges(self):
         raise NotImplementedError()
