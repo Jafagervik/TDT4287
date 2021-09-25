@@ -1,6 +1,7 @@
 """This file contains my representation of a suffix tree."""
 __author__ = "Jørgen Aleksander Fagervik"
 
+
 """
 T = abaaba$
 m = len(T) 
@@ -13,47 +14,70 @@ Total length of edge labels is quadratic in m
 
 
 class Node:
-    def __init__(self, label: str = "") -> None:
+    def __init__(self, label: int, parent=None, children=None) -> None:
         self.label = label
+        self.parent = parent
+        # Children in this case actually become the edges
+        self.children = [] if not children else children
 
 
 class Edge:
-    def __init__(
-        self, parent: Node, children: list[Node] = None, label: tuple = None
-    ) -> None:
-        self.parent = parent
-        self.children = children if children is not None else []
+    def __init__(self, f: Node, t: Node, label: str = "", substr: tuple = (0, 0)):
+        self.f = f
+        self.t = t
         self.label = label
+        self.substr = substr
+
+    def __repr__(self):
+        pass
 
 
 class SuffixTree:
     """
-    We will be using lcp and suffix arrays to construct the SuffixTree here, not ukkonen
+    Using good ol Ukkonens algorithm
 
-    Suffix Array: 1. sort array of suffixes. 2. replace each letter by its rank in Sigma (The alphabet)
-    3.
-    O(m) space
-    O(m^2) time
     """
 
     def __init__(self, t: str) -> None:
         t.__add__("$")
-        self.suffixes = [t[i:] for i in range(len(t))]
+        self.t = t
+        self.n = len(self.t)
+        self.root = None
+        self.remainder = 0
+        self.active_node = None
+        self.active_edge = None
+        self.active_length = 0
+        self.end = 0
 
-    def follow(self, s):
-        pass
+    def get_child(self, node, i):
+        # The way to access a child self.root.children[0].t
+        return node.children[i].t
 
-    def is_suffix(self) -> bool:
-        pass
+    def get_first_child(self, node):
+        return node.children[0].t
 
-    def is_substring(self, s) -> bool:
-        pass
+    def get_all_children(self, node):
+        return [edge.t for edge in node.children]
 
-    def __repr__(self) -> str:
-        pass
+    def build_suffix_tree(self):
+        """
+        Making tree in O(n) time by making use of suffix links
+        """
+        prev_node = None
 
-    def __str__(self) -> str:
-        pass
+        for i in range(self.n):
+            new_node = Node(i)
+            # Root
+            if i == 0:
+                self.root = new_node
+                prev_node = new_node
+                continue
+            self.active_node = new_node
+            # Case 1: No outgoing edge, check first character in all children edges
+            if self.t[i] not in [c.label[0] for c in self.active_node.children]:
+                new_edge = Edge(prev_node, new_node, self.t[:i], (0, i))
+                prev_node.children.append(new_edge)
+                new_node.parent = prev_node
 
-    def __len__(self) -> int:
-        pass
+    def print_edges(self):
+        raise NotImplementedError()
