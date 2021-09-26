@@ -8,8 +8,25 @@ Sequence similarity indicates homology
 """
 
 
+def exact_pattern_match(text: str, pattern: str):
+    m = len(text)
+    n = len(pattern)
+    count = 0
+
+    for i in range(m):
+        for j in range(n):
+            if text[i] != pattern[j]:
+                break
+            if count == n:
+                print(f"Found pattern that starts at index {i}")
+                return i
+
+            count += 1
+    return -1
+
+
 def init_matrix(m: int, n: int):
-    return [[false] * (n) for i in range(m)]
+    return [[False] * (n) for i in range(m)]
 
 
 def find_diagonals(matrix) -> list:
